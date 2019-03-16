@@ -1,9 +1,12 @@
 <template>
     <v-container>
         <v-flex xs6 sm4 d-flex>
+            <!--{{selectedInterval}}-->
             <v-select
+                    v-on:change="changeInterval"
                     :items="getIntervalsLabels()"
-                    v-model="selectedInterval.label"
+                    item-value="label"
+                    v-model="selectedInterval"
                     label="News fetching interval"
                     outline
             ></v-select>
@@ -35,13 +38,17 @@ export default {
   methods: {
     getIntervalsLabels () {
       return this.intervals.map(interval => interval.label)
+    },
+    changeInterval (newIntervalLabel) {
+      // get the interval in millisec from the available intervals, based on the label from v-select
+      const newIntervalMillisec = this.intervals.find(interval => interval.label === newIntervalLabel).millisec
+      // dispatch an action to set a new interval in vuex state
+      this.$store.dispatch('newsFeed/setInterval', newIntervalMillisec)
     }
   },
   computed: {
     selectedInterval () {
-      // Set initial interval to 20 sec
-      const newsFeedInterval = this.$store.state.newsFeed.interval
-      return this.intervals.find(interval => interval.millisec === newsFeedInterval)
+      return this.intervals.find(interval => interval.millisec === this.$store.state.newsFeed.interval)
     }
   },
   watch: {

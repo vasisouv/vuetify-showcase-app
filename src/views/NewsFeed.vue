@@ -4,7 +4,12 @@
         <v-toolbar color="light-blue" dark>
             <v-toolbar-title>News feed</v-toolbar-title>
         </v-toolbar>
-        <interval-select></interval-select>
+        <div class="ml-3 mb-4">
+            <interval-select></interval-select>
+            <interval-countdown></interval-countdown>
+        </div>
+
+        <v-divider></v-divider>
         <v-list three-line>
             <template v-for="(article, index) in articles">
                 <v-list-tile
@@ -60,23 +65,15 @@
 
 <script>
 // import { mapGetters, mapState } from 'vuex'
-import IntervalSelect from '@/components/newsfeed/IntervalSelect.vue'
+import IntervalSelect from '@/components/IntervalSelect.vue'
+import IntervalCountdown from '@/components/IntervalCountdown.vue'
 
 export default {
-  components: { IntervalSelect },
+  components: { IntervalSelect, IntervalCountdown },
   data: () => {
     return {
       newsPolling: null,
       page: 1
-      // items: [
-      //   { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Photos', subtitle: 'Jan 9, 2014' },
-      //   { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Recipes', subtitle: 'Jan 17, 2014' },
-      //   { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Work', subtitle: 'Jan 28, 2014' }
-      // ],
-      // items2: [
-      //   { icon: 'assignment', iconClass: 'blue white--text', title: 'Vacation itinerary', subtitle: 'Jan 20, 2014' },
-      //   { icon: 'call_to_action', iconClass: 'amber white--text', title: 'Kitchen remodel', subtitle: 'Jan 10, 2014' }
-      // ]
     }
   },
   computed: {

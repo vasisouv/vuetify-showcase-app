@@ -26,6 +26,9 @@ const actions = {
         commit(INSERT, response.data.articles)
       }
     })
+  },
+  setInterval ({ commit }, interval) {
+    commit('UPDATE', interval)
   }
 }
 
@@ -37,29 +40,18 @@ const getters = {
   interval: state => {
     return state.interval
   }
-  // getAllDeployments: state => {
-  //   return state.all
-  // },
-  // getDeploymentSensorById: (state, getters) => (sensorId, deploymentId) => {
-  //   let deployment = getters.getDeploymentById(deploymentId)
-  //   return deployment.sensors.find(sensor => sensor.id === parseInt(sensorId))
-  // },
-  // getDeploymentById: state => id => {
-  //   return state.all.find(deployment => deployment.id === parseInt(id))
-  // }
 }
 
 // mutations
 const mutations = {
   [INSERT] (state, articles) {
-    // Vue.set(state.all, articles)
     state.articles.unshift(...articles)
   },
-  [DELETE] (state) {
-    console.log('deleting')
+  [DELETE] (state, payload) {
+
   },
   [UPDATE] (state, payload) {
-    console.log(payload)
+    state.interval = payload
   }
 }
 
