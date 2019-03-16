@@ -14,7 +14,7 @@ export default new Router({
     {
       path: '/news',
       name: 'news',
-      component: () => import(/* webpackChunkName: "about" */ './views/News.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/NewsFeed.vue')
     }
   ]
 })
