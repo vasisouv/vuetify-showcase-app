@@ -1,17 +1,15 @@
 <template>
-    <v-container>
-        <v-flex xs6 sm4 d-flex>
-            <!--{{selectedInterval}}-->
-            <v-select
-                    v-on:change="changeInterval"
-                    :items="getIntervalsLabels()"
-                    item-value="label"
-                    v-model="selectedInterval"
-                    label="News fetching interval"
-                    outline
-            ></v-select>
-        </v-flex>
-    </v-container>
+    <v-flex xs6 sm4 d-flex>
+        <!--{{selectedInterval}}-->
+        <v-select
+                v-on:change="changeInterval"
+                :items="getIntervalsLabels()"
+                item-value="label"
+                v-model="selectedInterval"
+                label="News fetching interval"
+                outline
+        ></v-select>
+    </v-flex>
 </template>
 <script>
 export default {
@@ -47,13 +45,18 @@ export default {
     }
   },
   computed: {
-    selectedInterval () {
-      return this.intervals.find(interval => interval.millisec === this.$store.state.newsFeed.interval)
-    }
-  },
-  watch: {
-    selectedInterval (value) {
-      console.log(value)
+    // selectedInterval () {
+    //   return
+    // }
+    selectedInterval: {
+      // getter
+      get: function () {
+        return this.intervals.find(interval => interval.millisec === this.$store.state.newsFeed.interval)
+      },
+      // setter
+      set: function (newVal) {
+        this.interval = newVal
+      }
     }
   }
 }

@@ -51,6 +51,7 @@ const mutations = {
 
   },
   [UPDATE] (state, payload) {
+    console.log('updating interval ' + payload)
     state.interval = payload
   }
 }

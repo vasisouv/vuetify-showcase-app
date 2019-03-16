@@ -1,5 +1,6 @@
 <template>
-    <v-breadcrumbs :items="items"></v-breadcrumbs>
+    <!--<v-breadcrumbs :items="items"></v-breadcrumbs>-->
+    <div></div>
 </template>
 <script>
 export default {

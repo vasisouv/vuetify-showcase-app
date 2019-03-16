@@ -4,7 +4,8 @@
         <v-toolbar color="light-blue" dark>
             <v-toolbar-title>News feed</v-toolbar-title>
         </v-toolbar>
-        <div class="ml-3 mb-4">
+        <!-- news feed controls -->
+        <div class="ml-3 mb-4 mt-4">
             <interval-select></interval-select>
             <interval-countdown></interval-countdown>
         </div>
@@ -85,11 +86,22 @@ export default {
       return this.$store.state.newsFeed.articles
     }
   },
+  watch: {
+    interval () {
+      this.setupInterval()
+    }
+  },
   methods: {
     pollNews () {
       // dispatch the first fetching immediately
       this.$store.dispatch('newsFeed/fetch')
       // then fetch news based on a used-set interval
+      this.setupInterval()
+    },
+    setupInterval () {
+      // destroy the old interval
+      clearInterval(this.newsPolling)
+      // setup the new news fetching interval
       this.newsPolling = setInterval(() => {
         this.$store.dispatch('newsFeed/fetch')
       }, this.$store.state.newsFeed.interval)
