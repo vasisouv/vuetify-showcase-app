@@ -18,7 +18,7 @@ export default {
   }),
   methods: {
     fetchNewsNow () {
-      console.log('fetching news..')
+      this.$store.dispatch('newsFeed/fetch')
     },
     setupInterval () {
       clearInterval(this.timeRemainingInterval)

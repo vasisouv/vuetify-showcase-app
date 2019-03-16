@@ -9,52 +9,28 @@
             <interval-select></interval-select>
             <interval-countdown></interval-countdown>
         </div>
-
         <v-divider></v-divider>
         <v-list three-line>
-            <template v-for="(article, index) in articles">
-                <v-list-tile
-                        :key="index"
-                        avatar
-                        @click=""
-                >
-                    <v-list-tile-avatar>
-                        <img v-if="article.urlToImage" :alt="article.title" :src="article.urlToImage">
-                    </v-list-tile-avatar>
+            <v-scroll-x-transition :group="true">
+                <template v-for="(article, index) in articles">
+                    <v-list-tile
+                            :key="index"
+                            avatar
+                            @click=""
+                    >
+                        <v-list-tile-avatar :key="article.urlToImage">
+                            <img v-if="article.urlToImage" :alt="article.title" :src="article.urlToImage">
+                        </v-list-tile-avatar>
 
-                    <v-list-tile-content>
-                        <v-list-tile-title v-html="article.title"></v-list-tile-title>
-                        <v-list-tile-sub-title v-html="article.description"></v-list-tile-sub-title>
-                    </v-list-tile-content>
-                </v-list-tile>
-            </template>
+                        <v-list-tile-content :key="article.title">
+                            <v-list-tile-title v-html="article.title"></v-list-tile-title>
+                            <v-list-tile-sub-title v-html="article.description"></v-list-tile-sub-title>
+                        </v-list-tile-content>
+
+                    </v-list-tile>
+                </template>
+            </v-scroll-x-transition>
         </v-list>
-        <!--<v-divider inset></v-divider>-->
-
-        <!--<v-subheader inset>Files</v-subheader>-->
-
-        <!--&lt;!&ndash;<v-list-tile&ndash;&gt;-->
-        <!--&lt;!&ndash;v-for="(article, index) in news"&ndash;&gt;-->
-        <!--&lt;!&ndash;:key="index"&ndash;&gt;-->
-        <!--&lt;!&ndash;avatar&ndash;&gt;-->
-        <!--&lt;!&ndash;@click=""&ndash;&gt;-->
-        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;<v-list-tile-avatar>&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;<v-icon :class="[item.iconClass]">{{ item.icon }}</v-icon>&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;</v-list-tile-avatar>&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<v-list-tile-content>&ndash;&gt;-->
-        <!--&lt;!&ndash;<v-list-tile-title>{{ article.title }}</v-list-tile-title>&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;<v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;</v-list-tile-content>&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<v-list-tile-action>&ndash;&gt;-->
-        <!--&lt;!&ndash;<v-btn icon ripple>&ndash;&gt;-->
-        <!--&lt;!&ndash;<v-icon color="grey lighten-1">info</v-icon>&ndash;&gt;-->
-        <!--&lt;!&ndash;</v-btn>&ndash;&gt;-->
-        <!--&lt;!&ndash;</v-list-tile-action>&ndash;&gt;-->
-        <!--&lt;!&ndash;</v-list-tile>&ndash;&gt;-->
-        <!--</v-list>-->
         <div class="text-xs-center">
             <v-pagination
                     v-model="page"

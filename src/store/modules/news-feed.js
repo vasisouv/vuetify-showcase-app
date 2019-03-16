@@ -1,5 +1,4 @@
 import { INSERT, UPDATE, DELETE } from '../mutation-types'
-import Vue from 'vue'
 
 const newsApiKey = process.env.VUE_APP_NEWS_API_KEY
 const topHeadlinesUrl = 'https://newsapi.org/v2/top-headlines?' +
@@ -45,7 +44,11 @@ const getters = {
 // mutations
 const mutations = {
   [INSERT] (state, articles) {
-    state.articles.unshift(...articles)
+    articles.forEach(a => {
+      if (!state.articles.some(article => JSON.stringify(article) === JSON.stringify(a))) {
+        state.articles.unshift(a)
+      }
+    })
   },
   [DELETE] (state, payload) {
 
