@@ -5,7 +5,7 @@
 
             <v-radio
                     v-on:change="changeOrdering"
-                    color="primary"
+                    color="green"
                     v-for="(order, index) in sortOrders"
                     :key="index"
                     :label="order.label"

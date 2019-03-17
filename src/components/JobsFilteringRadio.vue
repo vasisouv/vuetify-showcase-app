@@ -4,7 +4,7 @@
         <v-radio-group class="mt-1" row v-model="selectedFiltering">
             <v-radio
                     v-on:change="changeFiltering"
-                    color="primary"
+                    color="green"
                     v-for="(filter, index) in filteringOptions"
                     :key="index"
                     :label="filter.label"

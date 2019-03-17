@@ -50,16 +50,6 @@ const actions = {
   }
 }
 
-// getters
-const getters = {
-  articles: state => {
-    return state.articles
-  },
-  interval: state => {
-    return state.interval
-  }
-}
-
 // mutations
 const mutations = {
   [INSERT + '_JOBS'] (state, jobs) {
@@ -84,6 +74,5 @@ export default {
   namespaced: true,
   state,
   actions,
-  mutations,
-  getters
+  mutations
 }

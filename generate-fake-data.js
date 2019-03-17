@@ -2,7 +2,7 @@ const faker = require('faker')
 
 function generateData () {
   let jobs = []
-  for (let id = 0; id < 10; id++) {
+  for (let id = 0; id < 100; id++) {
     let technologies = getTechnologies()
 
     let country = getCountry()

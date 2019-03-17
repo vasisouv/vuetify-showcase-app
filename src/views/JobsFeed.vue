@@ -13,7 +13,15 @@
             </v-flex>
         </v-layout>
         <v-divider></v-divider>
-        <jobs-list v-if="jobs" :jobs="jobs"></jobs-list>
+        <jobs-list v-if="jobs.length > 0" :jobs="jobs"></jobs-list>
+        <v-layout v-else align-center justify-center row fill-height class="mt-5 mb-5">
+            <v-progress-circular
+                    :size="70"
+                    :width="7"
+                    color="green"
+                    indeterminate
+            ></v-progress-circular>
+        </v-layout>
         <div class="text-xs-center">
             <v-pagination
                     v-model="page"

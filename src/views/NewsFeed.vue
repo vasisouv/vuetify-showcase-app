@@ -5,31 +5,19 @@
         </v-toolbar>
         <!-- news feed controls -->
         <div class="ml-3 mb-4 mt-4">
-            <interval-select></interval-select>
-            <interval-countdown></interval-countdown>
+            <news-interval-select></news-interval-select>
+            <news-interval-countdown></news-interval-countdown>
         </div>
         <v-divider></v-divider>
-        <v-list three-line>
-            <v-scroll-x-transition :group="true">
-                <template v-for="(article, index) in articles">
-                    <v-list-tile
-                            :key="index"
-                            avatar
-                            @click=""
-                    >
-                        <v-list-tile-avatar :key="article.urlToImage">
-                            <img v-if="article.urlToImage" :alt="article.title" :src="article.urlToImage">
-                        </v-list-tile-avatar>
-
-                        <v-list-tile-content :key="article.title">
-                            <v-list-tile-title v-html="article.title"></v-list-tile-title>
-                            <v-list-tile-sub-title v-html="article.description"></v-list-tile-sub-title>
-                        </v-list-tile-content>
-
-                    </v-list-tile>
-                </template>
-            </v-scroll-x-transition>
-        </v-list>
+        <news-list v-if="articles.length > 0" :articles="articles"></news-list>
+        <v-layout v-else align-center justify-center row fill-height class="mt-5 mb-5">
+            <v-progress-circular
+                    :size="70"
+                    :width="7"
+                    color="blue"
+                    indeterminate
+            ></v-progress-circular>
+        </v-layout>
         <div class="text-xs-center">
             <v-pagination
                     v-model="page"
@@ -40,12 +28,12 @@
 </template>
 
 <script>
-// import { mapGetters, mapState } from 'vuex'
-import IntervalSelect from '@/components/IntervalSelect.vue'
-import IntervalCountdown from '@/components/IntervalCountdown.vue'
+import NewsIntervalSelect from '@/components/NewsIntervalSelect.vue'
+import NewsIntervalCountdown from '@/components/NewsIntervalCountdown.vue'
+import NewsList from '@/components/NewsList.vue'
 
 export default {
-  components: { IntervalSelect, IntervalCountdown },
+  components: { NewsIntervalSelect, NewsIntervalCountdown, NewsList },
   data: () => {
     return {
       newsPolling: null,

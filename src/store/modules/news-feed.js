@@ -19,12 +19,12 @@ const state = getDefaultState()
 // actions
 const actions = {
   fetch ({ commit, state }) {
-    // this._vm.$http.get(topHeadlinesUrl).then((response) => {
-    //   // check if articles exist
-    //   if (this._vm.$helpers.has(response.data, 'articles')) {
-    //     commit(INSERT, response.data.articles)
-    //   }
-    // })
+    this._vm.$http.get(topHeadlinesUrl).then((response) => {
+      // check if articles exist
+      if (this._vm.$helpers.has(response.data, 'articles')) {
+        commit(INSERT, response.data.articles)
+      }
+    })
   },
   setInterval ({ commit }, interval) {
     commit('UPDATE', interval)
