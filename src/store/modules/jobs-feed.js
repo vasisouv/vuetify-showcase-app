@@ -1,16 +1,13 @@
 import { INSERT, UPDATE, DELETE } from '../mutation-types'
 
-const newsApiKey = process.env.VUE_APP_NEWS_API_KEY
-const topHeadlinesUrl = 'https://newsapi.org/v2/top-headlines?' +
-  'country=us&' +
-  'apiKey=' + newsApiKey
+const jobsUri = 'http://localhost:3000/jobs'
 
 // initial state
 const getDefaultState = () => {
   return {
-    articles: [],
-    interval: 300000,
-    lastUpdated: null
+    sortBy: null,
+    filterBy: null,
+    filter: null
   }
 }
 
@@ -19,12 +16,7 @@ const state = getDefaultState()
 // actions
 const actions = {
   fetch ({ commit, state }) {
-    // this._vm.$http.get(topHeadlinesUrl).then((response) => {
-    //   // check if articles exist
-    //   if (this._vm.$helpers.has(response.data, 'articles')) {
-    //     commit(INSERT, response.data.articles)
-    //   }
-    // })
+    return this._vm.$http.get(jobsUri)
   },
   setInterval ({ commit }, interval) {
     commit('UPDATE', interval)

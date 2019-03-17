@@ -1,7 +1,6 @@
 <template>
-
     <v-card>
-        <v-toolbar color="light-blue" dark>
+        <v-toolbar color="blue" dark>
             <v-toolbar-title>News feed</v-toolbar-title>
         </v-toolbar>
         <!-- news feed controls -->

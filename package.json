@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "faker": "^4.1.0",
     "vue": "^2.6.6",
     "vue-axios": "^2.1.4",
     "vue-router": "^3.0.1",
