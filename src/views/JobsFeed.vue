@@ -3,15 +3,17 @@
         <v-toolbar color="green" dark>
             <v-toolbar-title>Jobs feed</v-toolbar-title>
         </v-toolbar>
-        <!-- news feed controls -->
-        <div class="ml-3 mb-4 mt-4">
-            <v-flex xs12 sm6 d-flex>
-                <sort-select></sort-select>
-                <filter-select></filter-select>
+        <!-- jobs feed controls -->
+        <v-layout class="ml-3 mb-4 mt-4">
+            <v-flex xs12 sm6 md6 d-flex auto mr-2 ml-2>
+                <jobs-sorting></jobs-sorting>
             </v-flex>
-        </div>
+            <v-flex xs12 sm6 md6 d-flex mr-2 ml-2>
+                <jobs-filtering></jobs-filtering>
+            </v-flex>
+        </v-layout>
         <v-divider></v-divider>
-        <jobs-list :jobs="jobs"></jobs-list>
+        <jobs-list v-if="jobs" :jobs="jobs"></jobs-list>
         <div class="text-xs-center">
             <v-pagination
                     v-model="page"
@@ -22,33 +24,23 @@
 </template>
 
 <script>
-// import { mapGetters, mapState } from 'vuex'
-import FilterSelect from '@/components/FilterSelect.vue'
-import SortSelect from '@/components/SortSelect.vue'
+import JobsFiltering from '@/components/JobsFiltering.vue'
+import JobsSorting from '@/components/JobsSorting.vue'
 import JobsList from '@/components/JobsList'
 
 export default {
-  components: { JobsList, FilterSelect, SortSelect },
+  components: { JobsList, JobsFiltering, JobsSorting },
   data: () => {
     return {
-      jobs: null,
       page: 1
     }
   },
   created () {
-    this.$store.dispatch('jobsFeed/fetch').then(jobs => {
-      this.jobs = jobs.data
-    })
+    this.$store.dispatch('jobsFeed/fetch')
   },
   computed: {
-    sortBy () {
-      return this.$store.state.jobs.sortBy
-    },
-    filterBy () {
-      return this.$store.state.jobs.filterBy
-    },
-    filter () {
-      return this.$store.state.jobs.filter
+    jobs () {
+      return this.$store.state.jobsFeed.allJobs
     }
   }
 }

@@ -1,13 +1,15 @@
-import { INSERT, UPDATE, DELETE } from '../mutation-types'
+import { INSERT, UPDATE } from '../mutation-types'
 
 const jobsUri = 'http://localhost:3000/jobs'
 
 // initial state
 const getDefaultState = () => {
   return {
-    sortBy: null,
-    filterBy: null,
-    filter: null
+    allJobs: [],
+    sortField: 'datePosted',
+    sortOrder: 'desc',
+    filterField: 'company.name',
+    filterContent: ''
   }
 }
 
@@ -15,11 +17,25 @@ const state = getDefaultState()
 
 // actions
 const actions = {
-  fetch ({ commit, state }) {
-    return this._vm.$http.get(jobsUri)
+  fetch ({ dispatch, commit, state }) {
+    let params = {
+      _sort: state.sortField,
+      _order: state.sortOrder
+    }
+    console.log(params)
+    this._vm.$http.get(jobsUri, {
+      params: params
+    }).then(jobs => {
+      commit('INSERT_JOBS', jobs.data)
+    })
   },
-  setInterval ({ commit }, interval) {
-    commit('UPDATE', interval)
+  setSortField ({ commit, dispatch }, sorting) {
+    commit('UPDATE_SORT_FIELD', sorting)
+    dispatch('fetch')
+  },
+  setSortOrder ({ commit, dispatch }, ordering) {
+    commit('UPDATE_SORT_ORDER', ordering)
+    dispatch('fetch')
   }
 }
 
@@ -35,19 +51,14 @@ const getters = {
 
 // mutations
 const mutations = {
-  [INSERT] (state, articles) {
-    articles.forEach(a => {
-      if (!state.articles.some(article => JSON.stringify(article) === JSON.stringify(a))) {
-        state.articles.unshift(a)
-      }
-    })
+  [INSERT + '_JOBS'] (state, jobs) {
+    state.allJobs = jobs
   },
-  [DELETE] (state, payload) {
-
+  [UPDATE + '_SORT_ORDER'] (state, sortOrder) {
+    state.sortOrder = sortOrder
   },
-  [UPDATE] (state, payload) {
-    console.log('updating interval ' + payload)
-    state.interval = payload
+  [UPDATE + '_SORT_FIELD'] (state, sortField) {
+    state.sortField = sortField
   }
 }
 
