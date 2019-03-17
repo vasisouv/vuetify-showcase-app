@@ -1,7 +1,8 @@
 <template>
     <v-select
+            clearable
             v-on:change="changeFilterValue"
-            :items="getFilteringLabelsByFilter()"
+            :items="getFilteringLabels()"
             box
             item-value="label"
             v-model="selectedFilter"
@@ -11,8 +12,24 @@
 <script>
 export default {
   data: () => ({
-    selectedFilter: null
-  }),
+    filteringOptions: [
+      {
+        field: 'company.name',
+        values: ['Some-Company Ltd', 'The Best Insurance Company',
+          'We Are The Worst Company LLC', 'Another Marketing Company LLP']
+      },
+      {
+        field: 'title',
+        values: ['Software Developer', 'Software Engineer', 'Programmer',
+          'Front-end developer', 'Back-end developer', 'Software Engineer']
+      },
+      {
+        field: 'datePosted',
+        values: ['Today', 'Yesterday']
+      }
+    ]
+  }
+  ),
   props: {
     filterBy: {
       required: true,
@@ -21,19 +38,35 @@ export default {
     }
   },
   methods: {
-    changeFilterValue () {
-      this.$store.dispatch('jobsFeed/setFilterValue', this.selectedFilter)
+    changeFilterValue (newValue) {
+      this.$store.dispatch('jobsFeed/setFilterValue', newValue)
     },
-    getFilteringLabelsByFilter () {
-      const filteringLabels = {
-        'company.name': ['Some-Company Ltd', 'The Best Insurance Company',
-          'We Are The Worst Company LLC', 'Another Marketing Company LLP'],
-        'title': ['Software Developer', 'Software Engineer', 'Programmer',
-          'Front-end developer', 'Back-end developer', 'Software Engineer'],
-        'datePosted': ['Today', 'Yesterday']
+    getFilteringLabels () {
+      return this.filteringOptions.find(filter => filter.field === this.$store.state.jobsFeed.filterField).values
+    }
+  },
+  computed: {
+    selectedFilter: {
+      // getter
+      get: function () {
+        if (this.filter) {
+          return this.filter
+        }
+        let relevantValues =
+            this.filteringOptions.find(
+              filter => (
+                filter.field === this.$store.state.jobsFeed.filterField
+              )
+            )
+        let value = relevantValues.values.find(value => value === this.$store.state.jobsFeed.filterValue)
+        if (value) {
+          return value
+        } else return null
+      },
+      // setter
+      set: function (newFilter) {
+        this.filter = newFilter
       }
-      // let currentFilterBy = String()
-      return filteringLabels[this.filterBy]
     }
   }
 }

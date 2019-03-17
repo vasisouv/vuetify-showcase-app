@@ -10,8 +10,8 @@ const vuexLocalStorage = new VuexPersist({
   // Function that passes the state and returns the state with only the objects you want to store.
   reducer: state => ({
     jobsFeed: state.jobsFeed
-  }),
-  filter: state => (state.indexOf('all') === -1) // Boolean
+  })
+  // filter: state => (console.log(state)) // Boolean
 })
 
 Vue.use(Vuex)
@@ -22,5 +22,4 @@ export default new Vuex.Store({
     jobsFeed
   },
   plugins: [vuexLocalStorage.plugin]
-
 })

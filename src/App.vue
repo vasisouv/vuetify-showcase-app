@@ -8,8 +8,8 @@
                             <v-toolbar-title>PolicyFly Challenge</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-toolbar-items class="hidden-sm-and-down">
-                                <v-btn to="/news?page=1" flat>News</v-btn>
-                                <v-btn to="/jobs?page=1" flat>Jobs</v-btn>
+                                <v-btn to="/news" flat>News</v-btn>
+                                <v-btn to="/jobs" flat>Jobs</v-btn>
                             </v-toolbar-items>
                         </v-toolbar>
                         <router-view></router-view>

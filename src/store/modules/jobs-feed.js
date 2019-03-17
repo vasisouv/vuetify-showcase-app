@@ -1,4 +1,4 @@
-import { INSERT, UPDATE } from '../mutation-types'
+import { DELETE, INSERT, UPDATE } from '../mutation-types'
 
 const jobsUri = 'http://localhost:3000/jobs'
 
@@ -18,6 +18,7 @@ const state = getDefaultState()
 // actions
 const actions = {
   fetch ({ dispatch, commit, state }) {
+    commit('DELETE_JOBS')
     let filterFieldStr = String(state.filterField)
     let params = {
       _sort: state.sortField,
@@ -45,6 +46,7 @@ const actions = {
     dispatch('fetch')
   },
   setFilterValue ({ commit, dispatch }, filterValue) {
+    // console.log('Chaning filter value ' + filterValue)
     commit(UPDATE + '_FILTER_VALUE', filterValue)
     dispatch('fetch')
   }
@@ -67,6 +69,9 @@ const mutations = {
   [UPDATE + '_FILTER_FIELD'] (state, filterField) {
     state.filterValue = null
     state.filterField = filterField
+  },
+  [DELETE + '_JOBS'] (state) {
+    state.allJobs = []
   }
 }
 
