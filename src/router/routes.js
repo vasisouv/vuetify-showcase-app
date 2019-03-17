@@ -12,6 +12,11 @@ const routes = [
     path: '/jobs',
     name: 'jobs',
     component: () => import(/* webpackChunkName: "jobs" */ '../views/JobsFeed.vue')
+  },
+  {
+    path: '/jobs/:jobId',
+    name: 'job-page',
+    component: () => import(/* webpackChunkName: "jobs" */ '../views/JobPage.vue')
   }
 ]
 

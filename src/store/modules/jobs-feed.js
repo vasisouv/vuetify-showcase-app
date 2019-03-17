@@ -6,6 +6,7 @@ const jobsUri = 'http://localhost:3000/jobs'
 const getDefaultState = () => {
   return {
     allJobs: [],
+    page: 1,
     sortField: 'datePosted',
     sortOrder: 'desc',
     filterField: 'company.name',
@@ -19,6 +20,7 @@ const state = getDefaultState()
 const actions = {
   fetch ({ dispatch, commit, state }) {
     commit('DELETE_JOBS')
+    commit('UPDATE_PAGE', 1)
     let filterFieldStr = String(state.filterField)
     let params = {
       _sort: state.sortField,
@@ -49,6 +51,17 @@ const actions = {
     // console.log('Chaning filter value ' + filterValue)
     commit(UPDATE + '_FILTER_VALUE', filterValue)
     dispatch('fetch')
+  },
+  setPage ({ commit }, page) {
+    commit(UPDATE + '_PAGE', page)
+  },
+  fetchJob ({ dispatch }, jobId) {
+    console.log(jobId)
+    return this._vm.$http.get(jobsUri, {
+      params: {
+        id: jobId
+      }
+    })
   }
 }
 
@@ -69,6 +82,9 @@ const mutations = {
   [UPDATE + '_FILTER_FIELD'] (state, filterField) {
     state.filterValue = null
     state.filterField = filterField
+  },
+  [UPDATE + '_PAGE'] (state, page) {
+    state.page = page
   },
   [DELETE + '_JOBS'] (state) {
     state.allJobs = []

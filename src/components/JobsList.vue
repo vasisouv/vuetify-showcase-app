@@ -1,12 +1,12 @@
 <template>
     <v-list three-line>
         <v-scroll-x-transition :group="true">
-            <template v-for="(job, index) in jobs">
+            <template v-for="(job, index) in jobsInPage">
                 <v-list-tile
                         :key="index"
                         avatar
                         ripple
-                        @click="toggle(index)"
+                        @click="goTo(job)"
                 >
                     <v-list-tile-content>
                         <v-list-tile-title>
@@ -48,11 +48,29 @@ export default {
       default: null,
       type: Array,
       required: true
+    },
+    page: {
+      default: 1,
+      type: Number,
+      required: true
+    }
+  },
+  methods: {
+    goTo (job) {
+      console.log(job)
+      this.$router.push('/jobs/' + job.id)
     }
   },
   filters: {
     toLocale (date) {
       return new Date(date).toLocaleDateString()
+    }
+  },
+  computed: {
+    jobsInPage () {
+      let currentPageMin = (this.page * 10) - 10
+      let currentPageMax = (this.page * 10) - 1
+      return this.jobs.filter((job, index) => index >= currentPageMin && index < currentPageMax)
     }
   }
 }

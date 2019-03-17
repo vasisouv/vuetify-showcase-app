@@ -6,7 +6,7 @@
             box
             item-value="label"
             v-model="selectedFilter"
-            label="Select"
+            label="Select value to filter data"
     ></v-select>
 </template>
 <script>
