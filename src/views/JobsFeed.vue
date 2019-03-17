@@ -5,10 +5,10 @@
         </v-toolbar>
         <!-- jobs feed controls -->
         <v-layout class="ml-3 mb-4 mt-4">
-            <v-flex xs12 sm6 md6 d-flex auto mr-2 ml-2>
+            <v-flex xs12 sm6 md6 d-flex auto mr-4 ml-2>
                 <jobs-sorting></jobs-sorting>
             </v-flex>
-            <v-flex xs12 sm6 md6 d-flex mr-2 ml-2>
+            <v-flex xs12 sm6 md6 d-flex auto mr-4 ml-2>
                 <jobs-filtering></jobs-filtering>
             </v-flex>
         </v-layout>

@@ -1,14 +1,22 @@
 <template>
     <div>
-        <filter-radio></filter-radio>
-        <filter-select></filter-select>
+        <jobs-filtering-radio></jobs-filtering-radio>
+        <jobs-filtering-select v-if="filterBy" :filter-by="filterBy"></jobs-filtering-select>
     </div>
 </template>
 <script>
-import FilterSelect from '@/components/FilterSelect'
-import FilterRadio from '@/components/FilterRadio'
+import JobsFilteringRadio from '@/components/JobsFilteringRadio'
+import JobsFilteringSelect from '@/components/JobsFilteringSelect'
 
 export default {
-  components: { FilterSelect, FilterRadio }
+  components: { JobsFilteringRadio, JobsFilteringSelect },
+  data: () => ({
+    filterBy: null
+  }),
+  created () {
+    this.$bus.$on('new-filter-by', filterBy => {
+      this.filterBy = filterBy
+    })
+  }
 }
 </script>

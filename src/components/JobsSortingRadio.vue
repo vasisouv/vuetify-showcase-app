@@ -1,32 +1,32 @@
 <template>
+    <div>
+        <span>Sorting order</span>
+        <v-radio-group class="mt-1" row v-model="selectedOrdering">
 
-    <v-radio-group row v-model="selectedOrdering">
-        <v-radio
-                v-on:change="changeOrdering"
-                color="primary"
-                v-for="(order, index) in sortOrders"
-                :key="index"
-                :label="order.label"
-                :value="order"
-        ></v-radio>
-    </v-radio-group>
+            <v-radio
+                    v-on:change="changeOrdering"
+                    color="primary"
+                    v-for="(order, index) in sortOrders"
+                    :key="index"
+                    :label="order.label"
+                    :value="order"
+            ></v-radio>
+        </v-radio-group>
+    </div>
+
 </template>
 <script>
 export default {
   data: () => ({
     sortOrders: [
       {
-        label: 'Company name',
-        abbr: 'company.name'
+        label: 'Ascending',
+        abbr: 'asc'
       },
       {
-        label: 'Title',
-        abbr: 'title'
-      },
-      // {
-      //   label: 'Technology',
-      //   abbr: 'technologies'
-      // }
+        label: 'Descending',
+        abbr: 'desc'
+      }
     ]
   }),
   methods: {

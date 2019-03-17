@@ -1,14 +1,14 @@
 <template>
     <div>
-        <sort-radio></sort-radio>
-        <sort-select></sort-select>
+        <jobs-sorting-radio></jobs-sorting-radio>
+        <jobs-sorting-select></jobs-sorting-select>
     </div>
 </template>
 <script>
-import SortSelect from '@/components/SortSelect.vue'
-import SortRadio from '@/components/SortRadio'
+import JobsSortingRadio from '@/components/JobsSortingRadio'
+import JobsSortingSelect from '@/components/JobsSortingSelect.vue'
 
 export default {
-  components: { SortRadio, SortSelect }
+  components: { JobsSortingRadio, JobsSortingSelect }
 }
 </script>

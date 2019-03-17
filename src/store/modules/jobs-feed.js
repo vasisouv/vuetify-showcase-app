@@ -9,7 +9,7 @@ const getDefaultState = () => {
     sortField: 'datePosted',
     sortOrder: 'desc',
     filterField: 'company.name',
-    filterContent: ''
+    filterValue: null
   }
 }
 
@@ -18,11 +18,14 @@ const state = getDefaultState()
 // actions
 const actions = {
   fetch ({ dispatch, commit, state }) {
+    let filterFieldStr = String(state.filterField)
     let params = {
       _sort: state.sortField,
       _order: state.sortOrder
     }
-    console.log(params)
+    if (state.filterValue) {
+      params[filterFieldStr] = state.filterValue
+    }
     this._vm.$http.get(jobsUri, {
       params: params
     }).then(jobs => {
@@ -30,11 +33,19 @@ const actions = {
     })
   },
   setSortField ({ commit, dispatch }, sorting) {
-    commit('UPDATE_SORT_FIELD', sorting)
+    commit(UPDATE + '_SORT_FIELD', sorting)
     dispatch('fetch')
   },
   setSortOrder ({ commit, dispatch }, ordering) {
-    commit('UPDATE_SORT_ORDER', ordering)
+    commit(UPDATE + '_SORT_ORDER', ordering)
+    dispatch('fetch')
+  },
+  setFilterField ({ commit, dispatch }, filterField) {
+    commit(UPDATE + '_FILTER_FIELD', filterField)
+    dispatch('fetch')
+  },
+  setFilterValue ({ commit, dispatch }, filterValue) {
+    commit(UPDATE + '_FILTER_VALUE', filterValue)
     dispatch('fetch')
   }
 }
@@ -59,6 +70,13 @@ const mutations = {
   },
   [UPDATE + '_SORT_FIELD'] (state, sortField) {
     state.sortField = sortField
+  },
+  [UPDATE + '_FILTER_VALUE'] (state, filterValue) {
+    state.filterValue = filterValue
+  },
+  [UPDATE + '_FILTER_FIELD'] (state, filterField) {
+    state.filterValue = null
+    state.filterField = filterField
   }
 }
 

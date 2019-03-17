@@ -9,14 +9,16 @@
                         @click="toggle(index)"
                 >
                     <v-list-tile-content>
-                        <v-list-tile-title><span class="font-weight-bold">{{ job.title }}</span> ({{job.company.name}})
+                        <v-list-tile-title>
+                            <span class="font-weight-bold">{{ job.title }}</span>
+                            ({{job.company.name}} - {{job.country}})
                         </v-list-tile-title>
                         <v-list-tile-sub-title class="text--primary">{{ job.shortParagraph }}
                         </v-list-tile-sub-title>
                         <v-list-tile-sub-title>
                             <v-chip v-for="(tech, index) in job.technologies" :key="index" small outline
                                     color="primary">
-                                {{tech}}
+                                {{tech.name}}
                             </v-chip>
                         </v-list-tile-sub-title>
 

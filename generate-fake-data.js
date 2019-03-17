@@ -4,14 +4,17 @@ function generateData () {
   let jobs = []
   for (let id = 0; id < 10; id++) {
     let technologies = getTechnologies()
+
+    let country = getCountry()
     let title = getJobTitle()
-    let companyName = faker.company.companyName()
+    let companyName = getCompanyName()
     let shortParagraph = getShortParagraph(title, companyName)
     let datePosted = faker.date.recent()
 
     jobs.push({
       id: id,
       title: title,
+      country: country,
       datePosted: datePosted,
       technologies: technologies,
       shortParagraph: shortParagraph,
@@ -25,7 +28,9 @@ function generateData () {
 }
 
 function getTechnologies () {
-  const availableTechnologies = ['Vue.js', 'Angular', 'Laravel', 'Python', 'flask', 'Java', 'PHP', 'Javascript']
+  const availableTechnologies = [
+    { name: 'Vue.js' }, { name: 'Angular' }, { name: 'Laravel' }, { name: 'Python' }, { name: 'flask' },
+    { name: 'Java' }, { name: 'PHP' }, { name: 'Javascript' }]
   let numberOfTechnologies = Math.floor((Math.random() * 5) + 1)
   return availableTechnologies
     .map(x => ({ x, r: Math.random() }))
@@ -36,7 +41,7 @@ function getTechnologies () {
 
 function getJobTitle () {
   const availableTitles = ['Software Developer', 'Software Engineer', 'Programmer',
-    'Front-end developer', 'Back-end developer']
+    'Front-end developer', 'Back-end developer', 'Software Engineer']
   return availableTitles[Math.floor(Math.random() * availableTitles.length)]
 }
 
@@ -49,6 +54,17 @@ function getShortParagraph (jobTitle, companyName) {
   ]
 
   return availableParagraphs[Math.floor(Math.random() * availableParagraphs.length)]
+}
+
+function getCountry () {
+  const availableCountries = ['USA', 'Greece', 'United Kingdom', 'Germany', 'France']
+  return availableCountries[Math.floor(Math.random() * availableCountries.length)]
+}
+
+function getCompanyName () {
+  const availableCompanies = ['Some-Company Ltd', 'The Best Insurance Company',
+    'We Are The Worst Company LLC', 'Another Marketing Company LLP']
+  return availableCompanies[Math.floor(Math.random() * availableCompanies.length)]
 }
 
 module.exports = generateData
