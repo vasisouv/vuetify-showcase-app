@@ -67,7 +67,7 @@ and will begin writing tests now that I figured everything else.
 * Write tests and improve test coverage
 * Improve error handling
 * Add another/more news sources to demonstrate live feed
-* Better document code
+* More extensive code documentation
 * Further Decouple some components
 
 #### Tools used
