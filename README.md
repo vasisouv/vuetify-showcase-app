@@ -50,7 +50,7 @@ The docker image is up on [my Docker Hub](https://hub.docker.com/r/vasisouv/case
 
 * Pull the docker image locally by running:
  `sudo docker pull vasisouv/case`
-* Use `docker run -p 8083:80 vasisouv/case` 
+* Use `sudo docker run -p 8083:80 vasisouv/case` 
 (8083 being the port parameter. Please make sure that this port is not
 under use, or use another port)
 
