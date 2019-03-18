@@ -9,7 +9,7 @@
             <news-interval-countdown></news-interval-countdown>
         </div>
         <v-divider></v-divider>
-        <news-list v-if="articles.length > 0" :articles="articles"></news-list>
+        <news-list v-if="articles.length > 0" :page="page" :articles="articles"></news-list>
         <v-layout v-else align-center justify-center row fill-height class="mt-5 mb-5">
             <v-progress-circular
                     :size="70"
@@ -18,10 +18,11 @@
                     indeterminate
             ></v-progress-circular>
         </v-layout>
-        <div class="text-xs-center">
+        <div class="text-xs-right pb-2">
             <v-pagination
                     v-model="page"
-                    :length="6"
+                    v-on:input="changePage"
+                    :length="pageLength"
             ></v-pagination>
         </div>
     </v-card>
@@ -41,12 +42,14 @@ export default {
     }
   },
   computed: {
-
     interval () {
       return this.$store.state.newsFeed.interval
     },
     articles () {
       return this.$store.state.newsFeed.articles
+    },
+    pageLength () {
+      return Math.ceil(this.$store.state.newsFeed.articles.length / 5)
     }
   },
   watch: {
@@ -68,6 +71,9 @@ export default {
       this.newsPolling = setInterval(() => {
         this.$store.dispatch('newsFeed/fetch')
       }, this.$store.state.newsFeed.interval)
+    },
+    changePage (newPage) {
+      this.page = newPage
     }
   },
   created () {

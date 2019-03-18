@@ -3,7 +3,7 @@
 
         <v-avatar @click="fetchNewsNow" class="blue">
             <v-btn flat icon color="white">
-                <v-icon>refresh</v-icon>
+                <v-icon>cloud_download</v-icon>
             </v-btn>
         </v-avatar>
         Fetching more posts in {{ time }} seconds

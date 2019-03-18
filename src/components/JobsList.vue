@@ -6,7 +6,7 @@
                         :key="index"
                         avatar
                         ripple
-                        @click="goTo(job)"
+                        :to="'/jobs/' + job.id"
                 >
                     <v-list-tile-content>
                         <v-list-tile-title>
@@ -53,12 +53,6 @@ export default {
       default: 1,
       type: Number,
       required: true
-    }
-  },
-  methods: {
-    goTo (job) {
-      console.log(job)
-      this.$router.push('/jobs/' + job.id)
     }
   },
   filters: {

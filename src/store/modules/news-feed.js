@@ -1,4 +1,4 @@
-import { INSERT, UPDATE, DELETE } from '../mutation-types'
+import { INSERT, UPDATE } from '../mutation-types'
 
 const newsApiKey = process.env.VUE_APP_NEWS_API_KEY
 const topHeadlinesUrl = 'https://newsapi.org/v2/top-headlines?' +
@@ -10,7 +10,8 @@ const getDefaultState = () => {
   return {
     articles: [],
     interval: 300000,
-    lastUpdated: null
+    lastUpdated: null,
+    noNew: false
   }
 }
 
@@ -27,7 +28,7 @@ const actions = {
     })
   },
   setInterval ({ commit }, interval) {
-    commit('UPDATE', interval)
+    commit(UPDATE + '_INTERVAL', interval)
   }
 }
 
@@ -47,14 +48,15 @@ const mutations = {
     articles.forEach(a => {
       if (!state.articles.some(article => JSON.stringify(article) === JSON.stringify(a))) {
         state.articles.unshift(a)
+      } else {
+        state.noNew = true
+        setTimeout(function () {
+          state.noNew = false
+        }, 2000)
       }
     })
   },
-  [DELETE] (state, payload) {
-
-  },
-  [UPDATE] (state, payload) {
-    console.log('updating interval ' + payload)
+  [UPDATE + '_INTERVAL'] (state, payload) {
     state.interval = payload
   }
 }

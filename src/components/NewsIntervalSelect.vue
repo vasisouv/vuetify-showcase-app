@@ -7,7 +7,7 @@
                 item-value="label"
                 v-model="selectedInterval"
                 label="News fetching interval"
-                outline
+                box
         ></v-select>
     </v-flex>
 </template>
