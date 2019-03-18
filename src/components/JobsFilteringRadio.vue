@@ -22,7 +22,7 @@ export default {
         abbr: 'company.name'
       },
       {
-        label: 'Title',
+        label: 'Job Title',
         abbr: 'title'
       }
     ]
@@ -46,8 +46,7 @@ export default {
         )
       },
       // setter
-      set: function (newMethod) {
-        this.selectedMethod = newMethod
+      set: function () {
       }
     }
   },

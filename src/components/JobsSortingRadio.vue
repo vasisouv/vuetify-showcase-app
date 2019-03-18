@@ -41,11 +41,6 @@ export default {
     selectedOrdering: {
       // getter
       get: function () {
-        // // if the user has changed the sort by option, use the selection
-        // if (this.selectedMethod) {
-        //   return this.selectedMethod
-        // }
-        // else get the value by searching based on vuex sort value
         return this.sortOrders.find(
           method => (
             method.abbr === this.$store.state.jobsFeed.sortOrder
@@ -53,9 +48,7 @@ export default {
         )
       },
       // setter
-      set: function (newMethod) {
-        this.selectedMethod = newMethod
-      }
+      set: () => ({})
     }
   }
 }

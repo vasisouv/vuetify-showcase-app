@@ -45,18 +45,13 @@ export default {
     }
   },
   computed: {
-    // selectedInterval () {
-    //   return
-    // }
     selectedInterval: {
       // getter
       get: function () {
         return this.intervals.find(interval => interval.millisec === this.$store.state.newsFeed.interval)
       },
       // setter
-      set: function (newVal) {
-        this.interval = newVal
-      }
+      set: () => ({})
     }
   }
 }
