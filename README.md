@@ -1,5 +1,12 @@
 ## Information
 
+I decided to create two individual modules to showcase both interval-based
+data polling and sorting/filtering. I used the json-server, which has 
+in-built sorting and filtering capabilities. However, json-server produces
+static data. So, I thought there was no point to poll data from a static
+data source. For this reason, I created the news module, an interval-based
+news feed.
+
 ### What it does
 * The application contains two modules, a news feed and a jobs feed.
 * The news feed module polls data on an interval from
@@ -7,6 +14,7 @@ https://newsapi.org/, an api that offers the latest news headlines
 and displays the data in a list.
 * The jobs feed module fetches data from a local [json-server](https://github.com/typicode/json-server)
 and displays it in a list.
+
 
 ### Modules in depth
 
@@ -65,6 +73,7 @@ Unfortunately I didn't get the time to test the app, but I sent it over
 and will begin writing tests now that I figured everything else.
 
 #### Future work
+* Use Autocomplete component for filtering
 * Write tests and improve test coverage
 * Improve error handling
 * Add another/more news sources to demonstrate live feed
