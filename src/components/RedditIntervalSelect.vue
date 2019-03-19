@@ -6,7 +6,7 @@
                 :items="getIntervalsLabels()"
                 item-value="label"
                 v-model="selectedInterval"
-                label="News fetching interval"
+                label="Reddit posts fetching interval"
                 box
         ></v-select>
     </v-flex>

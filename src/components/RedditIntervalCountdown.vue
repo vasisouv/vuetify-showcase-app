@@ -1,7 +1,7 @@
 <template>
     <v-chip>
 
-        <v-avatar @click="fetchNewsNow" class="blue">
+        <v-avatar @click="fetchNewNow" class="blue">
             <v-btn flat icon color="white">
                 <v-icon>cloud_download</v-icon>
             </v-btn>
@@ -17,7 +17,7 @@ export default {
     time: null
   }),
   methods: {
-    fetchNewsNow () {
+    fetchNewNow () {
       this.$store.dispatch('redditFeed/fetch')
     },
     setupInterval () {
