@@ -17,7 +17,7 @@
                         </v-list-tile-sub-title>
                         <v-list-tile-sub-title>
                             <v-chip v-for="(tech, index) in job.technologies" :key="index" small outline
-                                    color="primary">
+                                    color="green">
                                 {{tech.name}}
                             </v-chip>
                         </v-list-tile-sub-title>

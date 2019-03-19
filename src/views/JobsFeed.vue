@@ -15,6 +15,7 @@
         </v-layout>
         <div class="text-xs-right pb-2">
             <v-pagination
+                    color="green"
                     v-model="page"
                     v-on:input="changePage"
                     :length="pageLength"
@@ -32,6 +33,7 @@
         </v-layout>
         <div class="text-xs-right pb-2">
             <v-pagination
+                    color="green"
                     v-model="page"
                     v-on:input="changePage"
                     :length="pageLength"

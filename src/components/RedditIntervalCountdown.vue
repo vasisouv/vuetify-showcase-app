@@ -1,7 +1,7 @@
 <template>
     <v-chip>
 
-        <v-avatar @click="fetchNewNow" class="blue">
+        <v-avatar @click="fetchNewNow" class="orange">
             <v-btn flat icon color="white">
                 <v-icon>cloud_download</v-icon>
             </v-btn>

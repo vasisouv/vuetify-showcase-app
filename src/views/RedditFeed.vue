@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-toolbar color="blue" dark>
+        <v-toolbar color="orange" dark>
             <v-toolbar-title>Reddit feed</v-toolbar-title>
         </v-toolbar>
         <!-- news feed controls -->
@@ -20,6 +20,7 @@
         </v-layout>
         <div class="text-xs-right pb-2">
             <v-pagination
+                    color="orange"
                     v-model="page"
                     v-on:input="changePage"
                     :length="pageLength"
