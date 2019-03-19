@@ -49,7 +49,7 @@ in seconds and force a premature fetch by pressing the download button.
 
 ## How to run it
 
-The docker image is up on [my Docker Hub](https://hub.docker.com/r/vasisouv/case).
+The docker image is up on [my Docker Hub](https://hub.docker.com/r/vasisouv/case/tags).
 
 * Pull the docker image locally by running:
  `sudo docker pull vasisouv/case`

@@ -49,7 +49,7 @@ export default {
       return this.$store.state.redditFeed.posts
     },
     pageLength () {
-      return Math.ceil(this.$store.state.redditFeed.posts.length / 5)
+      return Math.ceil(this.$store.state.redditFeed.posts.length / 10)
     }
   },
   watch: {
