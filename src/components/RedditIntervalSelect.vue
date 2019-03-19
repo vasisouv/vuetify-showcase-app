@@ -41,14 +41,14 @@ export default {
       // get the interval in millisec from the available intervals, based on the label from v-select
       const newIntervalMillisec = this.intervals.find(interval => interval.label === newIntervalLabel).millisec
       // dispatch an action to set a new interval in vuex state
-      this.$store.dispatch('newsFeed/setInterval', newIntervalMillisec)
+      this.$store.dispatch('redditFeed/setInterval', newIntervalMillisec)
     }
   },
   computed: {
     selectedInterval: {
       // getter
       get: function () {
-        return this.intervals.find(interval => interval.millisec === this.$store.state.newsFeed.interval)
+        return this.intervals.find(interval => interval.millisec === this.$store.state.redditFeed.interval)
       },
       // setter
       set: () => ({})

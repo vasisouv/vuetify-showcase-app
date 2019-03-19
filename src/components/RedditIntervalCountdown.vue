@@ -18,7 +18,7 @@ export default {
   }),
   methods: {
     fetchNewsNow () {
-      this.$store.dispatch('newsFeed/fetch')
+      this.$store.dispatch('redditFeed/fetch')
     },
     setupInterval () {
       clearInterval(this.timeRemainingInterval)
@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     stateInterval () {
-      return this.$store.state.newsFeed.interval
+      return this.$store.state.redditFeed.interval
     }
   },
   watch: {

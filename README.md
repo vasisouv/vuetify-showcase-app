@@ -2,18 +2,19 @@
 
 I decided to create two individual modules to showcase both interval-based
 data polling and sorting/filtering. I used the json-server, which has 
-in-built sorting and filtering capabilities. However, json-server produces
-static data. So, I thought there was no point to poll data from a static
-data source. For this reason, I created the news module, an interval-based
-news feed.
+in-built sorting and filtering capabilities to utilize those on the server.
+However, json-server produces static data and for this reason ,
+since there was no point to poll data from a static
+data source, I created the reddit module, an interval-based
+reddit feed from the [r/pics](https://reddit.com/r/pics) subreddit.
 
 ### What it does
-* The application contains two modules, a news feed and a jobs feed.
-* The news feed module polls data on an interval from
-https://newsapi.org/, an api that offers the latest news headlines
-and displays the data in a list.
-* The jobs feed module fetches data from a local [json-server](https://github.com/typicode/json-server)
-and displays it in a list.
+* The application contains two modules, a reddit posts feed and a jobs feed.
+* The reddit feed module polls data on an interval from
+reddit, an online community-forum, and more specifically, from the 
+[r/pics](https://reddit.com/r/pics) subreddit.
+* The jobs feed module fetches data from a [json-server](https://github.com/typicode/json-server),
+ and displays it in a list.
 
 
 ### Modules in depth
@@ -35,22 +36,16 @@ a DigitalOcean vm and allows the user to:
 The jobs page filters are persisted using the 
 [vuex-persist](https://github.com/championswimmer/vuex-persist) plugin.
 
-Current Issue:
- * An Event Bus is used to handle only one event for demonstration purposes.
-Event buses pose an issue for maintainability and should not be used in larger
-scale apps, especially since vuex is utilized.
+Possible Improvement for dynamic data:
+* Use the autocomplete component from vuetify for dynamic company names etc.
 
-#### News Feed
+#### Reddit Feed
 
-The news feed module, as previously stated, polls data on a set interval
-from an online news API. The user can select and change the interval based
-on a set of 4 intervals. There is also the ability to view the remaining time
+The reddit feed module, as previously stated, polls data on a set interval from
+Reddit. The user can select and change the interval based
+on a set of 4 intervals (could be improved to custom input).
+There is also the ability to view the remaining time
 in seconds and force a premature fetch by pressing the download button.
-
-Current Issue:
-* The news API updates the latest headlines too sporadically, resulting
-in no new posts for some time. The selection of another API that updates
-the feed more frequently would solve this issue.
 
 ## How to run it
 
@@ -67,16 +62,16 @@ under use, or use another port)
 I managed to deploy the app on Docker in time. The part that involved
 the combination of json-server and the vue app in a single container,
 coupled with the fact that I used docker for the first time consumed
-quite more time than I expected.
+more time than initially I expected.
  
-Unfortunately I didn't get the time to test the app, but I sent it over
-and will begin writing tests now that I figured everything else.
+As far as testing goes I run into some last minute technical issues ([https://github.com/vuejs/vue/issues/9698](https://github.com/vuejs/vue/issues/9698)) and will
+publish the tests when they are ready. 
 
 #### Future work
-* Use Autocomplete component for filtering
+* Use Autocomplete component for filtering of jobs
 * Write tests and improve test coverage
 * Improve error handling
-* Add another/more news sources to demonstrate live feed
+* Add more subreddits / allow the user to enter custom subreddits in Reddit's feed.
 * More extensive code documentation
 * Further Decouple some components
 

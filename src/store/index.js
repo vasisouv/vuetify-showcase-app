@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
 
-import newsFeed from './modules/news-feed'
+import redditFeed from './modules/reddit-feed'
 import jobsFeed from './modules/jobs-feed'
 
 const vuexLocalStorage = new VuexPersist({
@@ -18,7 +18,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    newsFeed,
+    redditFeed,
     jobsFeed
   },
   plugins: [vuexLocalStorage.plugin]

@@ -1,15 +1,15 @@
 <template>
     <v-card>
         <v-toolbar color="blue" dark>
-            <v-toolbar-title>News feed</v-toolbar-title>
+            <v-toolbar-title>Reddit feed</v-toolbar-title>
         </v-toolbar>
         <!-- news feed controls -->
         <div class="ml-3 mb-4 mt-4">
-            <news-interval-select></news-interval-select>
-            <news-interval-countdown></news-interval-countdown>
+            <reddit-interval-select></reddit-interval-select>
+            <reddit-interval-countdown></reddit-interval-countdown>
         </div>
         <v-divider></v-divider>
-        <news-list v-if="articles.length > 0" :page="page" :articles="articles"></news-list>
+        <reddit-list v-if="posts.length > 0" :page="page" :posts="posts"></reddit-list>
         <v-layout v-else align-center justify-center row fill-height class="mt-5 mb-5">
             <v-progress-circular
                     :size="70"
@@ -29,27 +29,27 @@
 </template>
 
 <script>
-import NewsIntervalSelect from '@/components/NewsIntervalSelect.vue'
-import NewsIntervalCountdown from '@/components/NewsIntervalCountdown.vue'
-import NewsList from '@/components/NewsList.vue'
+import RedditIntervalSelect from '@/components/RedditIntervalSelect.vue'
+import RedditIntervalCountdown from '@/components/RedditIntervalCountdown.vue'
+import RedditList from '@/components/RedditList.vue'
 
 export default {
-  components: { NewsIntervalSelect, NewsIntervalCountdown, NewsList },
+  components: { RedditIntervalSelect, RedditIntervalCountdown, RedditList },
   data: () => {
     return {
-      newsPolling: null,
+      redditPolling: null,
       page: 1
     }
   },
   computed: {
     interval () {
-      return this.$store.state.newsFeed.interval
+      return this.$store.state.redditFeed.interval
     },
-    articles () {
-      return this.$store.state.newsFeed.articles
+    posts () {
+      return this.$store.state.redditFeed.posts
     },
     pageLength () {
-      return Math.ceil(this.$store.state.newsFeed.articles.length / 5)
+      return Math.ceil(this.$store.state.redditFeed.posts.length / 5)
     }
   },
   watch: {
@@ -58,29 +58,29 @@ export default {
     }
   },
   methods: {
-    pollNews () {
+    pollPosts () {
       // dispatch the first fetching immediately
-      this.$store.dispatch('newsFeed/fetch')
-      // then fetch news based on a used-set interval
+      this.$store.dispatch('redditFeed/fetch')
+      // then fetch reddit posts based on a used-set interval
       this.setupInterval()
     },
     setupInterval () {
       // destroy the old interval
-      clearInterval(this.newsPolling)
+      clearInterval(this.redditPolling)
       // setup the new news fetching interval
-      this.newsPolling = setInterval(() => {
-        this.$store.dispatch('newsFeed/fetch')
-      }, this.$store.state.newsFeed.interval)
+      this.redditPolling = setInterval(() => {
+        this.$store.dispatch('redditFeed/fetch')
+      }, this.$store.state.redditFeed.interval)
     },
     changePage (newPage) {
       this.page = newPage
     }
   },
   created () {
-    this.pollNews()
+    this.pollPosts()
   },
   beforeDestroy () {
-    clearInterval(this.newsPolling)
+    clearInterval(this.redditPolling)
   }
 }
 </script>

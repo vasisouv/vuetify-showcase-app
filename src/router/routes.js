@@ -4,9 +4,9 @@ const routes = [
     redirect: '/jobs'
   },
   {
-    path: '/news',
-    name: 'news',
-    component: () => import(/* webpackChunkName: "news" */ '../views/NewsFeed.vue')
+    path: '/reddit',
+    name: 'reddit',
+    component: () => import(/* webpackChunkName: "news" */ '../views/RedditFeed.vue')
   },
   {
     path: '/jobs',
