@@ -1,5 +1,12 @@
 ## Information
 
+I decided to create two individual modules to showcase both interval-based
+data polling and sorting/filtering. I used the json-server, which has 
+in-built sorting and filtering capabilities. However, json-server produces
+static data. So, I thought there was no point to poll data from a static
+data source. For this reason, I created the news module, an interval-based
+news feed.
+
 ### What it does
 * The application contains two modules, a news feed and a jobs feed.
 * The news feed module polls data on an interval from
@@ -8,11 +15,13 @@ and displays the data in a list.
 * The jobs feed module fetches data from a local [json-server](https://github.com/typicode/json-server)
 and displays it in a list.
 
+
 ### Modules in depth
 
 #### Jobs Feed
 
-The jobs feed module allows the user to:
+The jobs feed module fetches data from a json-server, deployed on
+a DigitalOcean vm and allows the user to:
  
 * Sort jobs (Ascending/Descending) based on:
     * Date
@@ -49,9 +58,10 @@ The docker image is up on [my Docker Hub](https://hub.docker.com/r/vasisouv/case
 
 * Pull the docker image locally by running:
  `sudo docker pull vasisouv/case`
-* Use `sudo docker run TODO` 
-(8085 being the port parameter. Please make sure that this port is not
+* Use `sudo docker run -p 8083:80 vasisouv/case` 
+(8083 being the port parameter. Please make sure that this port is not
 under use, or use another port)
+* Visit `http://localhost:8083`
 
 ## Testing & deployment
 I managed to deploy the app on Docker in time. The part that involved
@@ -63,10 +73,11 @@ Unfortunately I didn't get the time to test the app, but I sent it over
 and will begin writing tests now that I figured everything else.
 
 #### Future work
+* Use Autocomplete component for filtering
 * Write tests and improve test coverage
 * Improve error handling
 * Add another/more news sources to demonstrate live feed
-* Better document code
+* More extensive code documentation
 * Further Decouple some components
 
 #### Tools used
