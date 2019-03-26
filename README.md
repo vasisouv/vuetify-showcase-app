@@ -64,7 +64,7 @@ the combination of json-server and the vue app in a single container,
 coupled with the fact that I used docker for the first time consumed
 more time than initially I expected.
  
-As far as testing goes I run into some last minute technical issues ([https://github.com/vuejs/vue/issues/9698](https://github.com/vuejs/vue/issues/9698)) and will
+As far as testing goes I run into some last minute technical issues ([https://github.com/vuejs/vue/issues/9698](https://github.com/vuejs/vue/issues/9698), [https://github.com/vuetifyjs/vuetify/issues/4964](https://github.com/vuetifyjs/vuetify/issues/4964)) and will
 publish the tests when they are ready. 
 
 #### Future work
