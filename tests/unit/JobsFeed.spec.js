@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import JobsFeed from '@/views/JobsFeed.vue'
-// import JobsList from '@/components/JobsList.vue'
+import JobsList from '@/components/JobsList.vue'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 
@@ -31,18 +31,19 @@ describe('JobsFeed.vue', () => {
 
     wrapper = mount(JobsFeed, { store })
   })
-  // it('contains no job list when no jobs length is less than 1', () => {
-  //   const wrapper = shallowMount(JobsFeed, { store, localVue })
-  //   expect(wrapper.contains(JobsList)).toBe(false)
-  // })
+  it('contains no job list when no jobs length is less than 1', () => {
+    expect(wrapper.contains(JobsList)).toBe(false)
+  })
 
-  it('should have a happy ending', () => {
-    console.log(wrapper.find().html())
+  it('contains a loading spinner while fetching the jobs', () => {
+    expect(wrapper.contains('v-progress-circular')).toBe(true)
+  })
 
-    // as normal HTML tags. For example, <v-flex> should be
-    // Just so that you can visually inspect the rendered html.
+  it('contains a toolbar', () => {
+    expect(wrapper.contains('v-toolbar')).toBe(true)
+  })
 
-    // rendered as <div class="v-flex ...">
-    // expect(wrapper.contains('div.flex')).toBe(true)
+  it('contains a green toolbar', () => {
+    expect(wrapper.find('v-toolbar').attributes('color').toBe('green'))
   })
 })
