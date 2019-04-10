@@ -1,7 +1,7 @@
 import { DELETE, INSERT, UPDATE } from '../mutation-types'
 
 // digital ocean vm json-server
-const jobsUri = 'http://142.93.59.88:3000/jobs'
+const jobsUri = 'http://165.227.146.165:3004/jobs'
 
 // initial state
 const getDefaultState = () => {
