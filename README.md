@@ -1,6 +1,6 @@
 ## Information
 
-I decided to create two individual modules to showcase both interval-based
+Sample app that contains two individual modules to showcase both interval-based
 data polling and sorting/filtering. I used the json-server, which has 
 in-built sorting and filtering capabilities to utilize those on the server.
 However, json-server produces static data and for this reason ,
@@ -57,15 +57,6 @@ The docker image is up on [my Docker Hub](https://hub.docker.com/r/vasisouv/case
 (8083 being the port parameter. Please make sure that this port is not
 under use, or use another port)
 * Visit `http://localhost:8083`
-
-## Testing & deployment
-I managed to deploy the app on Docker in time. The part that involved
-the combination of json-server and the vue app in a single container,
-coupled with the fact that I used docker for the first time consumed
-more time than initially I expected.
- 
-As far as testing goes I run into some last minute technical issues ([https://github.com/vuejs/vue/issues/9698](https://github.com/vuejs/vue/issues/9698), [https://github.com/vuetifyjs/vuetify/issues/4964](https://github.com/vuetifyjs/vuetify/issues/4964)) and will
-publish the tests when they are ready. 
 
 #### Future work
 * Use Autocomplete component for filtering of jobs
