@@ -5,7 +5,7 @@
                 <v-layout align-center justify-center>
                     <v-flex xs12 sm8 md8>
                         <v-toolbar>
-                            <v-toolbar-title>PolicyFly Challenge</v-toolbar-title>
+                            <v-toolbar-title>Vuetify Showcase App</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-toolbar-items class="hidden-sm-and-down">
                                 <v-btn to="/jobs" flat>Jobs</v-btn>
